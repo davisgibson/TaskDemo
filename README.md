@@ -17,6 +17,8 @@
 ##5. The app should be visible in your browser.
 
 
+This site is a WIP. Updates can be found at https://github.com/davisgibson/TaskDemo
+					And a live version can be found at https://davisgibson.com
 
 If you have any questions/issues, please email me at gibsonscottdavis@gmail.com
 

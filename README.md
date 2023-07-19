@@ -18,8 +18,6 @@
 
 
 
-
-
 If you have any questions/issues, please email me at gibsonscottdavis@gmail.com
 
 I labelled my comments with a `*note*` (including asterisks) to make them searchable.
@@ -32,8 +30,6 @@ I labelled my comments with a `*note*` (including asterisks) to make them search
  - landing page with projects / global task list
  - middleware to require an account
  - put this sucker on a laravel forge server with its own domain
-
-
 
 
 Thanks for checking out my code!

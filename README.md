@@ -25,6 +25,7 @@ I labelled my comments with a `*note*` (including asterisks) to make them search
 
 
 ###TODO:
+ - figure out why github doesn't parse this as markdown
  - make the priority slider in tasks/create look better (or delete it altogether, it may be more labor than its worth)
  - perhaps use observers to handle re-prioritization when a new task is stored.
  - landing page with projects / global task list

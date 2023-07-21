@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\LabelController;
 use App\Http\Controllers\ProjectController;
 
 /*
@@ -15,6 +16,7 @@ use App\Http\Controllers\ProjectController;
 |
 */
 Route::resource('/tasks', TaskController::class);
+Route::resource('/labels', LabelController::class);
 
 Route::get('/', [ProjectController::class, 'index']);
 Route::get('/projects/{project}', [ProjectController::class, 'show']);

@@ -6,7 +6,7 @@
 		<span>Projects</span>
 	</div>
 	<div class="card-body p-0" style="background-color: rgba(191, 200, 211, 0.5)">
-		@each('projects.partials.project', $projects, 'project')
+		@each('projects.partials.list-item', $projects, 'project')
 	</div>
 </div>
 @endsection

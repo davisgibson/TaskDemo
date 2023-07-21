@@ -6,6 +6,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use App\Models\Project;
+use App\Models\Label;
 use App\Models\Task;
 
 class ProjectController extends Controller
@@ -13,11 +14,34 @@ class ProjectController extends Controller
 
     use AuthorizesRequests, ValidatesRequests;
 
-    public function show(Project $project)
+    public function show(Request $request, Project $project)
     {
+        $labels = Label::all();
+        if($request->has('labels'))
+        {
+            $filterByLabels = collect($request->labels);
+            //assign isSelected now because it looks messy on the front end.
+            $labels->map(function($label) use ($request, $filterByLabels) {
+                if($filterByLabels->contains($label->id))
+                    $label->isSelected = true;
+
+                return $label;
+            });
+
+            $tasks = $project->orderedTasks()->whereHas('labels', function($query) use ($filterByLabels) {
+                $query->whereIn('id', $filterByLabels);
+            })->get();
+        }
+        else
+            $tasks = $project->orderedTasks;
+
+
+
         return view('projects.show')->with([
             'current_project' => $project,
+            'tasks' => $tasks,
             'projects' => Project::orderBy('name', 'desc')->select('id', 'name')->get(),
+            'labels' => $labels,
         ]);
     }
 

@@ -7,6 +7,7 @@ use Database\Factories\TaskFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Project;
+use App\Models\Label;
 
 class Task extends Model
 {
@@ -17,6 +18,11 @@ class Task extends Model
     public function project()
     {
     	return $this->belongsTo(Project::class);
+    }
+
+    public function labels()
+    {
+        return $this->belongsToMany(Label::class);
     }
 
     protected static function newFactory(): Factory

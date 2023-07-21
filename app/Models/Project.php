@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Task;
 
@@ -22,9 +23,9 @@ class Project extends Model
     	return $this->tasks()->count();
     }
 
-    public function getOrderedTasksAttribute()
+    public function orderedTasks()
     {
-    	return $this->tasks()->orderBy('priority', 'asc')->get();
+        return $this->hasMany(Task::class)->orderBy('priority', 'asc');
     }
 
     // *note* finds an absolute priority from a percentage

@@ -1,0 +1,1 @@
+<span class="badge mx-1" style="border: 1px solid rgba(0, 0, 0, 0.1); background-color: {{ $label->color }}; color: {{ $label->text_color }}; opacity: 0.9;">{{ $label->name }}</span>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\Task;
+use App\Models\Label;
 
 class TaskController extends Controller
 {
@@ -48,6 +49,7 @@ class TaskController extends Controller
         return view('tasks.edit')->with([
             'task' => $task,
             'projects' => Project::all(),
+            'labels' => Label::all(),
         ]);
     }
 
@@ -62,6 +64,8 @@ class TaskController extends Controller
             'name' => $request->name,
             'project_id' => $request->project
         ]);
+
+        $task->labels()->sync($request->labels);
 
         return redirect("/projects/{$request->project}");
     }

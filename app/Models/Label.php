@@ -13,6 +13,11 @@ class Label extends Model
 
     protected $guarded = ['id'];
 
+    public function getNameAttribute()
+    {
+        return strtolower($this->getRawOriginal('name'));
+    }
+
     public function tasks()
     {
     	return $this->belongsToMany(Task::class, 'label_task');

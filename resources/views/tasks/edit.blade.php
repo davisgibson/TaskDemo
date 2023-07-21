@@ -14,7 +14,7 @@
 		<form method="POST" action="/tasks/{{ $task->id }}">
 			@csrf
 			@method('PUT')
-			<div class="col-8">
+			<div class="col-12 col-lg-8">
 				<div class="form-group">
 					<label for="name">Name</label>
 					<input type="text" class="form-control" name="name" id="name" value="{{ $task->name }}" maxlength="75" required>
@@ -40,7 +40,7 @@
 				</div>
 				<div class="float-right">
 					<a onclick="return confirm('Are you sure you want to leave? Your changes will not be saved.')" class="btn btn-outline-secondary" href="/projects/{{ $task->project_id }}">Cancel</a>
-					<button type="submit" class="btn btn-primary">Save</button>
+					<button type="submit" class="btn btn-primary ml-2">Save</button>
 				</div>
 			</div>
 		</form>

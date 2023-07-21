@@ -28,12 +28,12 @@ class ProjectController extends Controller
                 return $label;
             });
 
-            $tasks = $project->orderedTasks()->whereHas('labels', function($query) use ($filterByLabels) {
+            $tasks = $project->orderedTasks()->with('labels')->whereHas('labels', function($query) use ($filterByLabels) {
                 $query->whereIn('id', $filterByLabels);
             })->get();
         }
         else
-            $tasks = $project->orderedTasks;
+            $tasks = $project->orderedTasks()->with('labels')->get();
 
 
 

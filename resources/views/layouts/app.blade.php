@@ -19,11 +19,26 @@
             a {
                 color: #303336;
             }
+            @media(max-width: 575px)
+            {
+                .nav-select {
+                    max-width: 50%;
+                }
+            }
+            @media(min-width: 767px)
+            {
+                .nav-select {
+                    max-width: 25%;
+                }
+            }
             .drag-icon::after {
               content: '⠿';
               cursor: pointer;
               font-size: 25px;
               color: #00000099;
+            }
+            .text-sm {
+                font-size: 0.8em;
             }
             .sortable-ghost {
                 opacity: 0.3 !important;
@@ -70,6 +85,10 @@
 
             .hidden-checkbox:checked + .badge{
                   text-indent: 0;
+            }
+
+            .dropdown-item.active {
+                background-color: #bcd5ee;
             }
         </style>
 

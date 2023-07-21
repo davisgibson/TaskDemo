@@ -3,45 +3,40 @@
 @section('content')
 <a class="text-muted text-sm ml-3 d-md-none d-xs-block" href="/">Back to projects</a>
 <div class="card mt-2 mt-md-0">
-	<div style="background-color: rgba(223, 228, 235, 0.5);" class="card-header d-flex justify-content-between align-items-center">
-		<div class="d-flex align-items-center">
-			<span style="font-weight: 550;">Tasks</span>
-			<div style="min-width: 10%" class="ml-3">
-				<div class="form-inline d-none d-xl-block">
-					<span class="text-muted mx-2"> for </span>
-					<select class="selectpicker" style="max-width: 450px;" id="select_project">
-						@foreach($projects as $project)
-						<option name="project" value="{{ $project->id }}"{{ $project->id == $current_project->id ? ' selected' : '' }}>{{ $project->name }}</option>
-						@endforeach
-					</select>
-				</div>
-			</div>
-		</div>
-		<div class="d-inline-flex">
-			<div class="form-inline mr-3" style="max-width: 40%;">
-				<span class="text-muted mx-2 d-none {{ request()->has('labels') ? 'd-lg-block' : '' }}"> showing only  </span>
-				<select id="filterByLabel" class="d-block" multiple>
-					@foreach($labels as $label)
-						<option style="background-color: linear-gradient({{ $label->color }}, #FFFFFF);" class="labelOption label-{{ $label->id }}" name="labels[]" value="{{ $label->id }}" {{ $label->isSelected ? ' selected' : '' }}>{{ $label->name }}</option>
+	<div style="background-color: rgba(223, 228, 235, 0.5);" class="card-header pl-2 pl-sm-3 d-flex justify-content-between align-items-center">
+		<span style="font-weight: 550;">Tasks</span>
+		<div class="ml-3 nav-select">
+			<div class="form-inline d-none d-md-flex flex-nowrap">
+				<span class="text-muted mx-2 d-none d-lg-block text-sm"> for </span>
+				<select class="selectpicker d-block" style="" id="select_project">
+					@foreach($projects as $project)
+					<option name="project" value="{{ $project->id }}"{{ $project->id == $current_project->id ? ' selected' : '' }}>{{ $project->name }}</option>
 					@endforeach
 				</select>
 			</div>
-			<div class="dropdown">
-				<button class="btn btn-primary dropdown-toggle" type="button" id="actionMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				    Options
-				</button>
-				<div class="dropdown-menu" aria-labelledby="actionMenu">
-					<!-- normally I would make the following query string with a form, but it doesn't work well with the dropdown. -->
-					<a class="dropdown-item" href="/tasks/create?project={{ $current_project->id }}">New task</a>
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="/labels">Labels</a>
-				</div>
+		</div>
+		<div class="d-inline-flex flex-row mr-3 nav-select">
+			<select id="filterByLabel" class="d-block" multiple>
+				@foreach($labels as $label)
+					<option style="background-color: linear-gradient({{ $label->color }}, #FFFFFF);" class="labelOption label-{{ $label->id }}" name="labels[]" value="{{ $label->id }}" {{ $label->isSelected ? ' selected' : '' }}>{{ $label->name }}</option>
+				@endforeach
+			</select>
+		</div>
+		<div class="dropdown">
+			<button class="btn btn-primary dropdown-toggle" type="button" id="actionMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			    Options
+			</button>
+			<div class="dropdown-menu" aria-labelledby="actionMenu">
+				<!-- normally I would make the following query string with a form, but it doesn't work well with the dropdown. -->
+				<a class="dropdown-item" href="/tasks/create?project={{ $current_project->id }}">New task</a>
+				<div class="dropdown-divider"></div>
+				<a class="dropdown-item" href="/labels">Labels</a>
 			</div>
 		</div>
 		
 	</div>
-	<div class="card-body p-0" style="background-color: rgba(191, 200, 211, 0.5)" id="tasks_container">
-		@each('tasks.partials.list-item', $tasks, 'task')
+	<div class="p-0 card-body" style="background-color: rgba(191, 200, 211, 0.5)" id="tasks_container">
+	@each('tasks.partials.list-item', $tasks, 'task')
 	</div>
 </div>
 @endsection
@@ -49,7 +44,7 @@
 @push('stylestack')
 <style>
 	@foreach($labels as $label)
-	.label-{{ $label->id }} > .text::before {
+	.label-{{ $label->id }} > .text::before, .dot-label-{{ $label->id }} {
 		content: '';
 		margin-right: 5px;
 		display: inline-block;
